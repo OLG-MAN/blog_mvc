@@ -1,15 +1,15 @@
 </td>
 
 <td width="300px" class="sidebar">
-    <div class="sidebarHeader">Меню</div>
+    <div class="sidebarHeader">Menu</div>
     <ul>
-        <li><a href="/">Главная страница</a></li>
-        <li><a href="/about-me">Обо мне</a></li>
+        <li><a href="/">Main page</a></li>
+        <li><a href="/about-me">About</a></li>
     </ul>
 </td>
 </tr>
 <tr>
-<td class="footer" colspan="2">Все права защищены (c) Мой блог</td>
+<td class="footer" colspan="2">All rights reserved 2020</td>
 </tr>
 </table>
 

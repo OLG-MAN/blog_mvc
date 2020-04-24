@@ -2,10 +2,10 @@
 
 namespace Controllers;
 
-use View\View;
 use Services\Db;
+use View\View;
 
-class MainController
+class ArticlesController
 {
     /** @var View */
     private $view;
@@ -19,10 +19,8 @@ class MainController
         $this->db = new Db();
     }
 
-    public function main()
+    public function view()
     {
-        $articles = $this->db->query('SELECT * FROM `articles`;');
-        $this->view->renderHtml('main/main.php', ['articles' => $articles]);
+        echo 'Здесь будет получение статьи и рендеринг шаблона';
     }
-    
-}   
+}

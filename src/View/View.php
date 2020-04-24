@@ -16,11 +16,11 @@ class View
         extract($vars);
 
         include $this->templatesPath . '/' . $templateName;
-        $buffer = ob_get_contents();
-        ob_end_clean();
+        // $buffer = ob_get_contents();
+        // ob_end_clean();
 
-        echo $buffer;
+        // echo $buffer;
     }
 
     
-}
+}   
