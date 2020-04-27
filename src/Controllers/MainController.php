@@ -22,10 +22,13 @@ class MainController
 
     public function main()
     {
-        $articles = $this->db->query('SELECT * FROM `articles`;');
+        $articles = $this->db->query('SELECT * FROM `articles`;', [], Article::class);
+        // var_dump($articles);
+        // return;    
         $this->view->renderHtml('main/main.php', ['articles' => $articles]);
+
     }
-    
+
     public function sayHello(string $name)
     {
         $this->view->renderHtml('main/hello.php', ['name' => $name]);
