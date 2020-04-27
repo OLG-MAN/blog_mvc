@@ -2,8 +2,9 @@
 
 namespace Controllers;
 
-use View\View;
+use Models\Articles\Article;
 use Services\Db;
+use View\View;
 
 class MainController
 {
@@ -25,4 +26,8 @@ class MainController
         $this->view->renderHtml('main/main.php', ['articles' => $articles]);
     }
     
-}   
+    public function sayHello(string $name)
+    {
+        $this->view->renderHtml('main/hello.php', ['name' => $name]);
+    }
+}

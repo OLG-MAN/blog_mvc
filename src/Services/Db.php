@@ -2,6 +2,8 @@
 
 namespace Services;
 
+use stdClass;
+
 class Db
 {
     /** @var \PDO */
@@ -19,7 +21,7 @@ class Db
         $this->pdo->exec('SET NAMES UTF8');
     }
 
-    public function query(string $sql, $params = []): ?array
+    public function query(string $sql, array $params = []): ?array
     {
         $sth = $this->pdo->prepare($sql);
         $result = $sth->execute($params);

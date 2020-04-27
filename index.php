@@ -17,7 +17,7 @@ foreach ($routes as $pattern => $controllerAndAction) {
 }
 
 if (!$isRouteFound) {
-    echo 'Page not found';
+    echo 'Страница не найдена!';
     return;
 }
 
