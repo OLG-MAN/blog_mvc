@@ -3,7 +3,7 @@
 namespace Controllers;
 
 use Models\Articles\Article;
-use Models\Users\User;
+// use Models\Users\User;
 use View\View;
 
 class ArticlesController
@@ -30,4 +30,4 @@ class ArticlesController
             'article' => $article
         ]);
     }
-}
+}   
