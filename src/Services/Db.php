@@ -33,7 +33,7 @@ class Db
         return $sth->fetchAll(\PDO::FETCH_CLASS, $className);;
     }
 
-    public static function getInstance(): self 
+    public static function getInstance(): self
     {
         if (self::$instance === null) {
             self::$instance = new self();
@@ -41,4 +41,11 @@ class Db
 
         return self::$instance;
     }
+
+    public function getLastInsertId(): int
+    {
+        return (int) $this->pdo->lastInsertId();
+    }
+
+    
 }

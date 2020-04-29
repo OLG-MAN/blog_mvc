@@ -2,7 +2,7 @@
 
 namespace Models\Articles;
 
-use Services\Db;
+// use Services\Db;
 use Models\Users\User;
 use Models\ActiveRecordEntity;
 
@@ -27,13 +27,22 @@ class Article extends ActiveRecordEntity
     {
         return $this->name;
     }
-
+    
+    public function setName(string $name) 
+    {
+        $this->name = $name;
+    }
     /**
      * @return string
      */
     public function getText(): string
     {
         return $this->text;
+    }
+
+    public function setText(string $text) 
+    {
+        $this->text = $text;
     }
 
     protected static function getTableName(): string
@@ -48,6 +57,11 @@ class Article extends ActiveRecordEntity
     {
         return (int) $this->authorId;
     }
+
+    public function setAuthor(User $author): void
+{
+    $this->authorId = $author->getId();
+}
 
     /**
      * @return User
