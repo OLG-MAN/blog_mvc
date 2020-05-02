@@ -7,6 +7,7 @@ return [
     '~^articles/(\d+)/delete$~' => [\Controllers\ArticlesController::class, 'delete'],
     '~^articles/add$~' => [Controllers\ArticlesController::class, 'add'],
     '~^users/register$~' => [\Controllers\UsersController::class, 'signUp'],
+    '~^users/(\d+)/activate/(.+)$~' => [\Controllers\UsersController::class, 'activate'],
     '~^$~' => [\Controllers\MainController::class, 'main'],
 ];
     
