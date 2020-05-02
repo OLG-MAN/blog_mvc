@@ -2,22 +2,14 @@
 
 namespace Controllers;
 
-use View\View;
 use Models\Users\User;
 use Exceptions\InvalidArgumentException;
 use Services\EmailSender;
 use Models\Users\UserActivationService;
+use Services\UsersAuthService;
 
-class UsersController
+class UsersController extends AbstractController
 {
-    /** @var View */
-    private $view;
-
-    public function __construct()
-    {
-        $this->view = new View(__DIR__ . '/../../templates');
-    }
-
     public function signUp()
     {
         if (!empty($_POST)) {
@@ -50,7 +42,24 @@ class UsersController
         $isCodeValid = UserActivationService::checkActivationCode($user, $activationCode);
         if ($isCodeValid) {
             $user->activate();
-            echo 'OK!';
+            echo 'OK! return to ' . '<a href="/">mainpage</a>';
         }
+    }
+
+    public function login()
+    {
+        if (!empty($_POST)) {
+            try {
+                $user = User::login($_POST);
+                UsersAuthService::createToken($user);
+                header('Location: /');
+                exit();
+            } catch (InvalidArgumentException $e) {
+                $this->view->renderHtml('users/login.php', ['error' => $e->getMessage()]);
+                return;
+            }
+        }
+
+        $this->view->renderHtml('users/login.php');
     }
 }

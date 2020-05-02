@@ -4,19 +4,10 @@ namespace Controllers;
 
 use Models\Articles\Article;
 use Models\Users\User;
-use View\View;
 use Exceptions\NotFoundException;
 
-class ArticlesController
+class ArticlesController extends AbstractController
 {
-    /** @var View */
-    private $view;
-
-    public function __construct()
-    {
-        $this->view = new View(__DIR__ . '/../../templates');
-    }
-
     public function view(int $articleId)
     {
         $article = Article::getById($articleId);
