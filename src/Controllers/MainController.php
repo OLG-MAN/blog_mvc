@@ -12,8 +12,10 @@ class MainController extends AbstractController
         $this->view->renderHtml('main/main.php', ['articles' => $articles]);
     }
 
+    //this is my first function:)
     public function sayHello(string $name)
     {
         $this->view->renderHtml('main/hello.php', ['name' => $name]);
     }
+    
 }

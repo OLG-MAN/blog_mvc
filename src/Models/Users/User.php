@@ -105,8 +105,6 @@ class User extends ActiveRecordEntity
         $this->save();
     }
 
-
-
     public static function login(array $loginData): User
     {
         if (empty($loginData['email'])) {

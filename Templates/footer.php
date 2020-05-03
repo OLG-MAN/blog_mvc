@@ -6,8 +6,9 @@
         <li><a href="/">Main page</a></li>
         <li><a href="/users/register">Sign Up</a></li>
         <li><a href="/users/login">Sign In</a></li>
+        <li><a href="/articles/add">Create Article</a></li>
         <li><a href="/about">About</a></li>
-        <li><a href="/hello/oleg">hello</a></li>
+        <!-- <li><a href="/hello/oleg">func Hello:)</a></li> -->
     </ul>
 </td>
 </tr>

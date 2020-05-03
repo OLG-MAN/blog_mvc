@@ -9,6 +9,7 @@ return [
     '~^users/register$~' => [\Controllers\UsersController::class, 'signUp'],
     '~^users/(\d+)/activate/(.+)$~' => [\Controllers\UsersController::class, 'activate'],
     '~^users/login~' => [\Controllers\UsersController::class, 'login'],
+    '~^about$~' => [\Controllers\AboutController::class, 'about'],
     '~^$~' => [\Controllers\MainController::class, 'main'],
 ];
     

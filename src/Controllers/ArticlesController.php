@@ -3,8 +3,11 @@
 namespace Controllers;
 
 use Models\Articles\Article;
-use Models\Users\User;
+// use Models\Users\User;
 use Exceptions\NotFoundException;
+use Exceptions\UnauthorizedException;
+use Exceptions\InvalidArgumentException;
+
 
 class ArticlesController extends AbstractController
 {
@@ -26,38 +29,57 @@ class ArticlesController extends AbstractController
         ]);
     }
 
-    public function edit(int $articleId): void
-    {
-        $article = Article::getById($articleId);
+    public function edit(int $articleId)
+{
+    $article = Article::getById($articleId);
 
-        if ($article === null) {
-            throw new NotFoundException();
+    if ($article === null) {
+        throw new NotFoundException();
+    }
+
+    if ($this->user === null) {
+        throw new UnauthorizedException();
+    }
+
+    if (!empty($_POST)) {
+        try {
+            $article->updateFromArray($_POST);
+        } catch (InvalidArgumentException $e) {
+            $this->view->renderHtml('articles/edit.php', ['error' => $e->getMessage(), 'article' => $article]);
+            return;
         }
 
-        $article->setName('Новое название статьи');
-        $article->setText('Новый текст статьи');
-
-        $article->save();
+        header('Location: /articles/' . $article->getId(), true, 302);
+        exit();
     }
+
+    $this->view->renderHtml('articles/edit.php', ['article' => $article]);
+}
 
     public function add(): void
     {
-        $author = User::getById(1);
-
-        $article = new Article();
-        $article->setAuthor($author);
-        $article->setName('Новое название статьи');
-        $article->setText('Новый текст статьи');
-
-        $article->save();
-        $article->delete();
-
-        var_dump($article);
+        if ($this->user === null) {
+            throw new UnauthorizedException();
+        }
+    
+        if (!empty($_POST)) {
+            try {
+                $article = Article::createFromArray($_POST, $this->user);
+            } catch (InvalidArgumentException $e) {
+                $this->view->renderHtml('articles/add.php', ['error' => $e->getMessage()]);
+                return;
+            }
+    
+            header('Location: /articles/' . $article->getId(), true, 302);
+            exit();
+        }
+    
+        $this->view->renderHtml('articles/add.php');
     }
 
-    // public function delete($articleId)
-    // {
-    //     $article = Article::getById($articleId);
-    //     $article->delete();
-    // }
+    public function delete($articleId)
+    {
+        $article = Article::getById($articleId);
+        $article->delete();
+    }
 }

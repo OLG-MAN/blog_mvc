@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Some Blog</title>
+    <title>Blog app</title>
     <link rel="stylesheet" href="/../style.css">
 </head>
 <body>
@@ -15,7 +15,7 @@
     </tr>
     <tr>
         <td colspan="2" style="text-align: right">
-            <?= !empty($user) ? 'Привет, ' . $user->getNickname() : 'Войдите на сайт' ?>
+            <?= !empty($user) ? 'Привет, ' . $user->getNickname() : 'Please Sign In' ?>
         </td>
     </tr>
     <tr>
