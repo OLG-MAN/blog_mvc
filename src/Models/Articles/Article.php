@@ -2,7 +2,6 @@
 
 namespace Models\Articles;
 
-// use Services\Db;
 use Models\Users\User;
 use Models\ActiveRecordEntity;
 use Exceptions\InvalidArgumentException;
@@ -64,9 +63,6 @@ class Article extends ActiveRecordEntity
         $this->authorId = $author->getId();
     }
 
-    /**
-     * @return User
-     */
     public function getAuthor(): User
     {
         return User::getById($this->authorId);

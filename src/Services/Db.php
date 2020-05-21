@@ -8,7 +8,6 @@ class Db
 {
     private static $instance;
 
-    /** @var \PDO */
     private $pdo;
 
     private function __construct()
@@ -52,6 +51,4 @@ class Db
     {
         return (int) $this->pdo->lastInsertId();
     }
-
-    
 }

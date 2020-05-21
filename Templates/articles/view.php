@@ -3,4 +3,5 @@
     <p><?= $article->getText() ?></p>
     <p>Автор: <?= $article->getAuthor()->getNickname() ?></p>
     <p><a href="/articles/<?= $article->getId() ?>/edit">Edit</a></p>
+    <p><a href="/articles/<?= $article->getId() ?>/delete">Delete</a></p>
 <?php include __DIR__ . '/../footer.php'; ?>

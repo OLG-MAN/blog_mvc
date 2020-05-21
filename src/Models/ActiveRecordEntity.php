@@ -6,12 +6,7 @@ use Services\Db;
 
 abstract class ActiveRecordEntity
 {
-    /** @var int */
     protected $id;
-
-    /**
-     * @return int
-     */
 
     public function getId(): int
     {
@@ -24,27 +19,15 @@ abstract class ActiveRecordEntity
         $this->$camelCaseName = $value;
     }
 
-    private function underscoreToCamelCase(string $source): string
-    {
-        return lcfirst(str_replace('_', '', ucwords($source, '_')));
-    }
-
-    /**
-     * @return static[]
-     */
-
     public static function findAll(): array
     {
         $db = Db::getInstance();
         return $db->query('SELECT * FROM `' . static::getTableName() . '`;', [], static::class);
     }
 
+
     abstract protected static function getTableName(): string;
 
-    /**
-     * @param int $id
-     * @return static|null
-     */
 
     public static function getById(int $id): ?self
     {
@@ -66,6 +49,7 @@ abstract class ActiveRecordEntity
             $this->insert($mappedProperties);
         }
     }
+
 
     private function update(array $mappedProperties): void
     {
@@ -132,11 +116,6 @@ abstract class ActiveRecordEntity
         return $mappedProperties;
     }
 
-    private function camelCaseToUnderscore(string $source): string
-    {
-        return strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $source));
-    }
-
     public static function findOneByColumn(string $columnName, $value): ?self
     {
         $db = Db::getInstance();
@@ -149,5 +128,15 @@ abstract class ActiveRecordEntity
             return null;
         }
         return $result[0];
+    }
+
+    private function camelCaseToUnderscore(string $source): string
+    {
+        return strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $source));
+    }
+
+    private function underscoreToCamelCase(string $source): string
+    {
+        return lcfirst(str_replace('_', '', ucwords($source, '_')));
     }
 }
