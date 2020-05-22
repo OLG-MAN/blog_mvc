@@ -25,10 +25,6 @@ abstract class ActiveRecordEntity
         return $db->query('SELECT * FROM `' . static::getTableName() . '`;', [], static::class);
     }
 
-
-    abstract protected static function getTableName(): string;
-
-
     public static function getById(int $id): ?self
     {
         $db = Db::getInstance();
@@ -139,4 +135,6 @@ abstract class ActiveRecordEntity
     {
         return lcfirst(str_replace('_', '', ucwords($source, '_')));
     }
+
+    abstract protected static function getTableName(): string;
 }

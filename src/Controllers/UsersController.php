@@ -23,7 +23,7 @@ class UsersController extends AbstractController
             if ($user instanceof User) {
                 $code = UserActivationService::createActivationCode($user);
 
-                EmailSender::send($user, 'Активация', 'userActivation.php', [
+                EmailSender::send($user, 'Activation Code', 'userActivation.php', [
                     'userId' => $user->getId(),
                     'code' => $code
                 ]);
